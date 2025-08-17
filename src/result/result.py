@@ -213,6 +213,13 @@ class Ok(Generic[T]):
         """
         return self
 
+    def match_err(self, err: type[Exception]):
+        """
+        The contained result is `Ok`, so return `Ok` with the original value
+        """
+        return self
+
+
 
 class DoException(Exception):
     """
@@ -417,7 +424,12 @@ class Err(Generic[E]):
         """
         op(self._value)
         return self
-
+    
+    def match_err(self, err: type[Exception]):
+        """
+        Checks if the contained error is an instance of the given exception type.
+        """
+        return isinstance(self._value, err)
 
 # define Result as a generic type alias for use
 # in type annotations
