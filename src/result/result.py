@@ -212,12 +212,12 @@ class Ok(Generic[T]):
         Calls a function with the contained value if `Err`. Returns the original result.
         """
         return self
-
-    def match_err(self, err: type[Exception]):
+    
+    def match_value(self, value: Any) -> bool:
         """
-        The contained result is `Ok`, so return `Ok` with the original value
+        Checks if the contained ok_value is the same as the given value.
         """
-        return self
+        return self._value == value
 
 
 
@@ -425,11 +425,12 @@ class Err(Generic[E]):
         op(self._value)
         return self
     
-    def match_err(self, err: type[Exception]):
+    def match_err(self, err: type[Exception]) -> bool:
         """
         Checks if the contained error is an instance of the given exception type.
         """
         return isinstance(self._value, err)
+
 
 # define Result as a generic type alias for use
 # in type annotations
