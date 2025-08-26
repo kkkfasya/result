@@ -443,6 +443,16 @@ def test_as_result_type_checking() -> None:
     assert res.ok() == 123
 
 
+def test_match_value() -> None:
+    o = Ok("yay")
+    assert o.match_value("yay")
+
+
+def test_match_err() -> None:
+    safe_open =  as_result(FileNotFoundError)(open)
+    assert safe_open("filedoesntexist", "r").match_err(FileNotFoundError)
+
+
 @pytest.mark.asyncio
 async def test_as_async_result() -> None:
     """
