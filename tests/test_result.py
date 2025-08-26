@@ -449,8 +449,9 @@ def test_match_value() -> None:
 
 
 def test_match_err() -> None:
-    safe_open =  as_result(FileNotFoundError)(open)
-    assert safe_open("filedoesntexist", "r").match_err(FileNotFoundError)
+    safe_open =  as_result(FileNotFoundError, FileExistsError)(open)
+    f = safe_open("filedoesntexist", "r")
+    assert f.match_err(FileNotFoundError)
 
 
 @pytest.mark.asyncio

@@ -3,6 +3,24 @@
 A simple Result type for Python 3 [inspired by
 Rust](https://doc.rust-lang.org/std/result/), fully type annotated.
 
+This fork by me will always be up-to-date with [montasaurus](https://github.com/montasaurus/result) version, it only adds 2 methods which makes matching value more beautiful.  
+this provides an alternative way to match error class and ok value, so  
+instead of just doing:
+```python
+o = Ok(True)
+e = Err(FileNotFoundError)
+o.unwrap() == True
+isinstance(e.err_value, FileNotFoundError)
+```
+we can also do
+```python
+o = Ok(True)
+e = Err(Exception)
+o.match_value(True)
+e.match_err(FileNotFoundError)
+
+```
+
 > [!WARNING]
 > Forked from the original [result](https://github.com/rustedpy/result) library after it became unmaintained. This version is experimental and mainly used for my own projects--use it at your own risk!
 
@@ -11,7 +29,7 @@ Rust](https://doc.rust-lang.org/std/result/), fully type annotated.
 Latest GitHub `main` branch version:
 
 ``` sh
-uv add git+https://github.com/montasaurus/result
+uv add git+https://github.com/kkkfasya/result
 ```
 
 ## Summary
