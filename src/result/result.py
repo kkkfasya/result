@@ -227,6 +227,7 @@ class Ok(Generic[T]):
 
 
 
+
 class DoException(Exception):
     """
     This is used to signal to `do()` that the result is an `Err`,
