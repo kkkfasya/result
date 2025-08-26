@@ -223,7 +223,8 @@ class Ok(Generic[T]):
         """
         Checks if the contained ok_value is the same as the given value.
         """
-        return self._value == value
+        return self._value == value # type: ignore[no-any-return]
+
 
 
 
